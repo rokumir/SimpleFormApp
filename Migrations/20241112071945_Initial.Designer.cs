@@ -11,7 +11,7 @@ using SimpleFormApp.Data;
 namespace SimpleFormApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241112055849_Initial")]
+    [Migration("20241112071945_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -36,7 +36,7 @@ namespace SimpleFormApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

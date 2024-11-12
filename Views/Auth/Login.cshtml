@@ -1,0 +1,65 @@
+﻿@using SimpleFormApp.Models
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Sign In";
+    var currentUtc = DateTime.UtcNow;
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <h2 class="text-center mb-4">Sign In</h2>
+
+                    <form asp-controller="Auth" asp-action="Login" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Username" class="form-control" placeholder="Username" autocomplete="username" />
+                            <label asp-for="Username">Username</label>
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Password" class="form-control" placeholder="Password" autocomplete="current-password" />
+                            <label asp-for="Password">Password</label>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input asp-for="RememberMe" class="form-check-input" />
+                            <label asp-for="RememberMe" class="form-check-label">Remember me</label>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Sign In</button>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <p class="mb-0">Don't have an account? <a asp-action="SignUp" class="text-primary">Create one</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card mt-3 shadow-sm">
+                <div class="card-body text-center text-muted">
+                    <small>
+                        Current Time (UTC): @currentUtc.ToString("yyyy-MM-dd HH:mm:ss")
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // Auto-focus username field on page load
+        $(document).ready(function() {
+            $('#Username').focus();
+        });
+    </script>
+}

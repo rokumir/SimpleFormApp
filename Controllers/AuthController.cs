@@ -6,6 +6,11 @@ using SimpleFormApp.Data;
 using SimpleFormApp.Models;
 using SimpleFormApp.Services;
 using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
+using Humanizer;
+
+namespace SimpleFormApp.Controllers;
+
 
 public class AuthController : Controller
 {
@@ -20,71 +25,47 @@ public class AuthController : Controller
         _logger = logger;
     }
 
-    [HttpGet]
-    public IActionResult Login(string returnUrl = null)
-    {
-        ViewData["ReturnUrl"] = returnUrl;
-        return View();
-    }
-
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
+    public async Task<IActionResult> Login([FromForm] LoginViewModel model)
     {
-        ViewData["ReturnUrl"] = returnUrl;
-
         if (ModelState.IsValid)
         {
-            try
+            var user = await _context.Users
+                .FirstOrDefaultAsync(u => u.Username == model.Username);
+
+            if (user != null && BCrypt.Net.BCrypt.Verify(model.Password, user.PasswordHash))
             {
-                if (await _authService.ValidateUserAsync(model.Username, model.Password))
+                // Update last login time
+                await _context.SaveChangesAsync();
+
+                var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim("FullName", user.FullName),
+            };
+
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(identity);
+
+                var authProperties = new AuthenticationProperties
                 {
-                    var user = await _authService.GetUserByUsernameAsync(model.Username);
+                    IsPersistent = model.RememberMe,
+                    ExpiresUtc = model.RememberMe ?
+                        DateTimeOffset.UtcNow.AddDays(30) : // 30 days if remember me
+                        DateTimeOffset.UtcNow.AddHours(24)  // 24 hours if not
+                };
 
-                    // Update last login time
-                    await _context.SaveChangesAsync();
+                await HttpContext.SignInAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme,
+                    principal,
+                    authProperties);
 
-                    // Create claims for the user
-                    var claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name, user.Username),
-                        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                        new Claim(ClaimTypes.GivenName, user.FullName),
-                    };
-
-                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    var principal = new ClaimsPrincipal(identity);
-
-                    var authProperties = new AuthenticationProperties
-                    {
-                        IsPersistent = model.RememberMe,
-                        ExpiresUtc = DateTimeOffset.UtcNow.AddHours(24), // 24 hour expiry
-                        AllowRefresh = true
-                    };
-
-                    await HttpContext.SignInAsync(
-                        CookieAuthenticationDefaults.AuthenticationScheme,
-                        principal,
-                        authProperties);
-
-                    _logger.LogInformation($"User {model.Username} logged in at {DateTime.UtcNow}");
-
-                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-                    {
-                        return Redirect(returnUrl);
-                    }
-
-                    return RedirectToAction("Index", "Home");
-                }
-
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                _logger.LogWarning($"Failed login attempt for username {model.Username}");
+                return RedirectToAction("Index", "Home");
             }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Login error: {ex.Message}");
-                ModelState.AddModelError(string.Empty, "An error occurred while signing in.");
-            }
+
+            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
         }
 
         return View(model);
@@ -101,5 +82,61 @@ public class AuthController : Controller
         _logger.LogInformation($"User {username} logged out at {DateTime.UtcNow}");
 
         return RedirectToAction("Login");
+    }
+
+    [AllowAnonymous]
+    [HttpGet]
+    public IActionResult SignUp()
+    {
+        if (User.Identity.IsAuthenticated)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+        return View();
+    }
+
+
+
+
+    [HttpPost]
+    [AllowAnonymous]
+    public async Task<IActionResult> SignUp(SignUpViewModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            if (await _context.Users.AnyAsync(u => u.Username == model.Username))
+            {
+                ModelState.AddModelError("Username", "This username is already taken.");
+                return View(model);
+            }
+
+            var user = new User
+            {
+                Username = model.Username,
+                FullName = model.FullName,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.Password),
+            };
+
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.Name, user.Username),
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim("FullName", user.FullName)
+        };
+
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                principal);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        return View(model);
     }
 }

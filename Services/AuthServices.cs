@@ -26,7 +26,7 @@ public class AuthService : IAuthService
         var user = await GetUserByUsernameAsync(username);
         if (user == null) return false;
 
-        return BCrypt.Net.BCrypt.Verify(password, user.Password);
+        return BCrypt.Net.BCrypt.Verify(password, user.PasswordHash);
     }
 
     public async Task<User> GetUserByUsernameAsync(string username)

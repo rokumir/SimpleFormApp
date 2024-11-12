@@ -16,5 +16,5 @@ public class User
 
     [Required]
     [DataType(DataType.Password)]
-    public required string Password { get; set; }
+    public required string PasswordHash { get; set; }
 }

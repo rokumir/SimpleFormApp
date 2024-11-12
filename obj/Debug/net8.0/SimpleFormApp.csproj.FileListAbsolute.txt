@@ -29,9 +29,7 @@ C:/Users/Henry/Documents/works/sweet-soft/SimpleFormApp/obj/Debug/net8.0/staticw
 C:/Users/Henry/Documents/works/sweet-soft/SimpleFormApp/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.SimpleFormApp.props
 C:/Users/Henry/Documents/works/sweet-soft/SimpleFormApp/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.SimpleFormApp.props
 C:/Users/Henry/Documents/works/sweet-soft/SimpleFormApp/obj/Debug/net8.0/staticwebassets.pack.json
-C:/Users/Henry/Documents/works/sweet-soft/SimpleFormApp/obj/Debug/net8.0/scopedcss/Pages/Shared/_Layout.cshtml.rz.scp.css
 C:/Users/Henry/Documents/works/sweet-soft/SimpleFormApp/obj/Debug/net8.0/scopedcss/bundle/SimpleFormApp.styles.css
-C:/Users/Henry/Documents/works/sweet-soft/SimpleFormApp/obj/Debug/net8.0/scopedcss/projectbundle/SimpleFormApp.bundle.scp.css
 C:/Users/Henry/Documents/works/sweet-soft/SimpleFormApp/obj/Debug/net8.0/SimpleFo.AB56F016.Up2Date
 C:/Users/Henry/Documents/works/sweet-soft/SimpleFormApp/obj/Debug/net8.0/SimpleFormApp.dll
 C:/Users/Henry/Documents/works/sweet-soft/SimpleFormApp/obj/Debug/net8.0/refint/SimpleFormApp.dll
@@ -763,9 +761,7 @@ C:\Users\Henry\Documents\works\sweet-soft\SimpleFormApp\obj\Debug\net8.0\staticw
 C:\Users\Henry\Documents\works\sweet-soft\SimpleFormApp\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.SimpleFormApp.props
 C:\Users\Henry\Documents\works\sweet-soft\SimpleFormApp\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.SimpleFormApp.props
 C:\Users\Henry\Documents\works\sweet-soft\SimpleFormApp\obj\Debug\net8.0\staticwebassets.pack.json
-C:\Users\Henry\Documents\works\sweet-soft\SimpleFormApp\obj\Debug\net8.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\Henry\Documents\works\sweet-soft\SimpleFormApp\obj\Debug\net8.0\scopedcss\bundle\SimpleFormApp.styles.css
-C:\Users\Henry\Documents\works\sweet-soft\SimpleFormApp\obj\Debug\net8.0\scopedcss\projectbundle\SimpleFormApp.bundle.scp.css
 C:\Users\Henry\Documents\works\sweet-soft\SimpleFormApp\obj\Debug\net8.0\SimpleFo.AB56F016.Up2Date
 C:\Users\Henry\Documents\works\sweet-soft\SimpleFormApp\obj\Debug\net8.0\SimpleFormApp.dll
 C:\Users\Henry\Documents\works\sweet-soft\SimpleFormApp\obj\Debug\net8.0\refint\SimpleFormApp.dll
@@ -773,3 +769,4 @@ C:\Users\Henry\Documents\works\sweet-soft\SimpleFormApp\obj\Debug\net8.0\SimpleF
 C:\Users\Henry\Documents\works\sweet-soft\SimpleFormApp\obj\Debug\net8.0\SimpleFormApp.genruntimeconfig.cache
 C:\Users\Henry\Documents\works\sweet-soft\SimpleFormApp\obj\Debug\net8.0\ref\SimpleFormApp.dll
 C:\Users\Henry\Documents\works\sweet-soft\SimpleFormApp\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\Henry\Documents\works\sweet-soft\SimpleFormApp\obj\Debug\net8.0\SimpleFormApp.sourcelink.json

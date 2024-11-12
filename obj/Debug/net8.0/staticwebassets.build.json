@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "rk82swJcC1OXtKvuUHnrupc0fqZ6FyKpX3AvDUxnFEc=",
+  "Hash": "6gIFqJwdO1wI6PPfxV7C6i3L4kpxOzWf/1qzrO8OhwA=",
   "Source": "SimpleFormApp",
   "BasePath": "_content/SimpleFormApp",
   "Mode": "Default",
@@ -16,44 +16,6 @@
     }
   ],
   "Assets": [
-    {
-      "Identity": "C:\\Users\\Henry\\Documents\\works\\sweet-soft\\SimpleFormApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\SimpleFormApp.styles.css",
-      "SourceId": "SimpleFormApp",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Henry\\Documents\\works\\sweet-soft\\SimpleFormApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
-      "BasePath": "_content/SimpleFormApp",
-      "RelativePath": "SimpleFormApp.styles.css",
-      "AssetKind": "All",
-      "AssetMode": "CurrentProject",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "ScopedCss",
-      "AssetTraitValue": "ApplicationBundle",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Henry\\Documents\\works\\sweet-soft\\SimpleFormApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\SimpleFormApp.styles.css"
-    },
-    {
-      "Identity": "C:\\Users\\Henry\\Documents\\works\\sweet-soft\\SimpleFormApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SimpleFormApp.bundle.scp.css",
-      "SourceId": "SimpleFormApp",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Henry\\Documents\\works\\sweet-soft\\SimpleFormApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
-      "BasePath": "_content/SimpleFormApp",
-      "RelativePath": "SimpleFormApp.bundle.scp.css",
-      "AssetKind": "All",
-      "AssetMode": "Reference",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "ScopedCss",
-      "AssetTraitValue": "ProjectBundle",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Henry\\Documents\\works\\sweet-soft\\SimpleFormApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SimpleFormApp.bundle.scp.css"
-    },
     {
       "Identity": "C:\\Users\\Henry\\Documents\\works\\sweet-soft\\SimpleFormApp\\wwwroot\\css\\site.css",
       "SourceId": "SimpleFormApp",
